@@ -27,6 +27,7 @@ const msgContent = ref('');
 const store = useStore();
 const msgDataList = toRef(store, 'messages');
 
+
 const ws = new WebSocket('ws://localhost:8080');
 ws.onopen = () => {
     console.log('Connected to the WebSocket server');
