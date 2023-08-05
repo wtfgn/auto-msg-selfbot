@@ -1,0 +1,24 @@
+* {
+  box-sizing: border-box;
+  font-family: 俐方體11號, Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-size: 20px;
+}
+
+body {
+  background-color: black;
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+#app {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  border: 3px solid white;
+  border-radius: 1rem;
+}
