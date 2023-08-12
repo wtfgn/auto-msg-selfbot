@@ -12,6 +12,8 @@ const port = 3000;
 const baseUrl = 'https://discord.com/api/v9';
 
 let userData = null;
+const isBot = process.env.IS_BOT === 'True'; // 'True' or 'False
+const authorizationValue = isBot ? `Bot ${process.env.TOKEN}` : `${process.env.TOKEN}`;
 
 app.use(cors()); // for CORS
 app.use(express.json()); // for parsing application/json
@@ -35,7 +37,7 @@ app.post('/sendMsgToChannel', async (req, res) => {
 			method: 'post',
 			url: `${baseUrl}/channels/${req.body.channelID}/messages`,
 			headers: {
-				'Authorization': `${process.env.BOT_TOKEN}`,
+				'Authorization': authorizationValue,
 			},
 			data: {
 				content: req.body.content,
@@ -54,7 +56,7 @@ app.post('/editMsg', async (req, res) => {
 			method: 'patch',
 			url: `${baseUrl}/channels/${req.body.channelID}/messages/${req.body.msgID}`,
 			headers: {
-				'Authorization': `${process.env.BOT_TOKEN}`,
+				'Authorization': authorizationValue,
 			},
 			data: {
 				content: req.body.content,
@@ -72,7 +74,7 @@ app.get('/getGuilds', async (req, res) => {
 			method: 'get',
 			url: `${baseUrl}/users/@me/guilds`,
 			headers: {
-				'Authorization': `${process.env.BOT_TOKEN}`,
+				'Authorization': authorizationValue,
 			},
 		});
 		res.send(response.data);
@@ -87,7 +89,7 @@ app.post('/getChannels', async (req, res) => {
 			method: 'get',
 			url: `${baseUrl}/guilds/${req.body.guildID}/channels`,
 			headers: {
-				'Authorization': `${process.env.BOT_TOKEN}`,
+				'Authorization': authorizationValue,
 			},
 		});
 		res.send(response.data);
@@ -103,7 +105,7 @@ app.post('/getRoles', async (req, res) => {
 			method: 'get',
 			url: `${baseUrl}/guilds/${req.body.guildID}/roles`,
 			headers: {
-				'Authorization': `${process.env.BOT_TOKEN}`,
+				'Authorization': authorizationValue,
 			},
 		});
 		res.send(response.data);
@@ -119,7 +121,7 @@ app.post('/getEmojis', async (req, res) => {
 			method: 'get',
 			url: `${baseUrl}/guilds/${req.body.guildID}/emojis`,
 			headers: {
-				'Authorization': `${process.env.BOT_TOKEN}`,
+				'Authorization': authorizationValue,
 			},
 		});
 		res.send(response.data);
@@ -135,7 +137,7 @@ app.post('/getMsgHistory', async (req, res) => {
 			method: 'get',
 			url: `${baseUrl}/channels/${req.body.channelID}/messages`,
 			headers: {
-				'Authorization': `${process.env.BOT_TOKEN}`,
+				'Authorization': authorizationValue,
 			},
 		});
 		res.send(response.data);

@@ -13,7 +13,7 @@ let seq = null;
 const payload = {
     op: 2,
     d: {
-        token: process.env.BOT_TOKEN,
+        token: process.env.TOKEN,
         properties: {
             os: 'linux',
             browser: 'chrome',
@@ -45,7 +45,7 @@ const initWebsocket = () => {
             const resumePayload = {
                 op: 6,
                 d: {
-                    token: process.env.BOT_TOKEN,
+                    token: process.env.TOKEN,
                     session_id: sessionID,
                     seq: seq,
                 }
